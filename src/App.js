@@ -14,7 +14,7 @@ class Menu1 extends Component {
     return (
       <div className="site-layout-content">
         <Row justify="center">
-          <a href="tony-resume.pdf"> Test </a>
+          <a href="/tony-resume.pdf"> Test </a>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
