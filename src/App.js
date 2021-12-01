@@ -1,9 +1,10 @@
 import React, { useState, Component } from "react";
 import logo from './logo.svg';
 import './App.css';
-import { Button, Layout, Menu, Breadcrumb, Row, Col } from 'antd';
+import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography } from 'antd';
 
 const { Header, Content, Footer } = Layout;
+const { Title } = Typography;
 
 
 class Menu1 extends Component {
@@ -14,26 +15,25 @@ class Menu1 extends Component {
     return (
       <div className="site-layout-content">
         <Row justify="center">
-          <a href="/tony-resume.pdf"> Test </a>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <Title> About Me </Title>
         </Row>
         <Row>
-            <Col span={6}>
-              Menu 1
-            </Col>
-            <Col span={6}>
-              Menu 1
-            </Col>
-            <Col span={6}>
-              Menu 1
-            </Col>
-            <Col span={6}>
-              Menu 1
-            </Col>
+          <Col className="vertical-align text-center" span={12}>
+            <Row justify="end">
+              <p>
+                Hello!
+                I am a fourth year student studying Information Technology Management at the University of Waterloo.
+              </p>
+            </Row>
+            <Row>
+              <p>
+                
+              </p>
+            </Row>
+          </Col>
+          <Col span={12}>
+            Menu 1
+          </Col>
         </Row>
       </div>
     )
@@ -148,7 +148,7 @@ class Menu5 extends Component {
 class App extends Component {
   constructor() {
     super();
-    this.state = {click: "2"};
+    this.state = {click: "1"};
 
     this.handleClick = this.handleClick.bind(this);
     this.menuSelector = this.menuSelector.bind(this);
@@ -181,7 +181,7 @@ class App extends Component {
       <div className="App">
         <Layout className="layout">
         <Header>
-          <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+          <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
             <Menu.Item key={1}>About</Menu.Item>
             <Menu.Item key={2}>Menu 2</Menu.Item>
             <Menu.Item key={3}>Menu 3</Menu.Item>
