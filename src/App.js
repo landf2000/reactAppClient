@@ -31,8 +31,11 @@ class Menu1 extends Component {
               </p>
             </Row>
           </Col>
+            
           <Col span={12}>
-            Menu 1
+            <Row>
+              <Button href="/reactAppClient/tony-resume.pdf"> Test </Button>
+            </Row>
           </Col>
         </Row>
       </div>
