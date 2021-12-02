@@ -1,7 +1,9 @@
 import React, { useState, Component } from "react";
 import logo from './logo.svg';
 import './App.css';
-import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography } from 'antd';
+import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider } from 'antd';
+
+import background from "./background.jpg";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
@@ -14,27 +16,28 @@ class Menu1 extends Component {
   render() {
     return (
       <div className="site-layout-content">
-        <Row justify="center">
-          <Title> About Me </Title>
+        <Row justify="center" style={{height: "100px"}}>
+          <Title> Tony Fang </Title>
         </Row>
-        <Row>
-          <Col className="vertical-align text-center" span={12}>
-            <Row justify="end">
+        <Divider>About Me</Divider>
+        <Row style={{height: "500px"}} justify="center" align="middle">
+          <Col span={6}>
+            <Row>
               <p>
-                Hello!
+                Hello, my name is Tony!
                 I am a fourth year student studying Information Technology Management at the University of Waterloo.
               </p>
             </Row>
             <Row>
-              <p>
-                
+              <p style={{margin: "0"}}>
+                In my spare time, I enjoy cooking, playing games, going on walks, and working out.
               </p>
             </Row>
           </Col>
-            
-          <Col span={12}>
-            <Row>
-              <Button href="/reactAppClient/tony-resume.pdf"> Test </Button>
+
+          <Col span={8}>
+            <Row justify="center">
+              <Button href="/reactAppClient/tony-resume.pdf"> My Resume </Button>
             </Row>
           </Col>
         </Row>
@@ -183,21 +186,21 @@ class App extends Component {
     return (
       <div className="App">
         <Layout className="layout">
-        <Header>
-          <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-            <Menu.Item key={1}>About</Menu.Item>
-            <Menu.Item key={2}>Menu 2</Menu.Item>
-            <Menu.Item key={3}>Menu 3</Menu.Item>
-            <Menu.Item key={4}>Menu 4</Menu.Item>
-            <Menu.Item key={5}>Menu 5</Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
-          
-          {this.menuSelector(this.state.click)}
+          <Header>
+            <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+              <Menu.Item key={1}>About</Menu.Item>
+              <Menu.Item key={2}>Menu 2</Menu.Item>
+              <Menu.Item key={3}>Menu 3</Menu.Item>
+              <Menu.Item key={4}>Menu 4</Menu.Item>
+              <Menu.Item key={5}>Menu 5</Menu.Item>
+            </Menu>
+          </Header>
+          <Content style={{ padding: '0 50px' }}>
+            
+            {this.menuSelector(this.state.click)}
 
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Tony Fang © 2021</Footer>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Tony Fang © 2021</Footer>
         </Layout>
 
         
