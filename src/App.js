@@ -1,9 +1,8 @@
 import React, { useState, Component } from "react";
-import logo from './logo.svg';
 import './App.css';
-import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider } from 'antd';
+import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider, Affix } from 'antd';
 
-import background from "./background.jpg";
+import logo from "./logo.png";
 
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
@@ -186,16 +185,19 @@ class App extends Component {
     return (
       <div className="App">
         <Layout className="layout">
-          <Header>
-            <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-              <Menu.Item key={1}>About</Menu.Item>
-              <Menu.Item key={2}>Menu 2</Menu.Item>
-              <Menu.Item key={3}>Menu 3</Menu.Item>
-              <Menu.Item key={4}>Menu 4</Menu.Item>
-              <Menu.Item key={5}>Menu 5</Menu.Item>
-            </Menu>
-          </Header>
-          <Content style={{ padding: '0 50px' }}>
+          <Affix offsetTop={0}>
+            <Header>
+              <img src={logo} style={{ float: "left", width: "31px", height: "31px", margin: "16px 24px 16px 0", backgroundColor: "transparent" }} alt="logo" />
+              <Menu onClick={this.handleClick} theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+                <Menu.Item key={1}>About</Menu.Item>
+                <Menu.Item key={2}>Menu 2</Menu.Item>
+                <Menu.Item key={3}>Menu 3</Menu.Item>
+                <Menu.Item key={4}>Menu 4</Menu.Item>
+                <Menu.Item key={5}>Menu 5</Menu.Item>
+              </Menu>
+            </Header>
+          </Affix>
+          <Content>
             
             {this.menuSelector(this.state.click)}
 
