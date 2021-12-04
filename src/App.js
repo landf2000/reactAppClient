@@ -1,11 +1,13 @@
 import React, { useState, Component } from "react";
+import { FilePdfOutlined, MailFilled, GithubOutlined, LinkedinFilled } from "@ant-design/icons";
 import './App.css';
-import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider, Affix } from 'antd';
+import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider, Affix, Card, Tooltip } from 'antd';
 
 import logo from "./logo.png";
+import tony from "./tony.jpg";
 
 const { Header, Content, Footer } = Layout;
-const { Title } = Typography;
+const { Title, Paragraph } = Typography;
 
 
 class Menu1 extends Component {
@@ -15,28 +17,39 @@ class Menu1 extends Component {
   render() {
     return (
       <div className="site-layout-content">
-        <Row justify="center" style={{height: "100px"}}>
-          <Title> Tony Fang </Title>
+        <Row justify="center">
+          <Title style={{ fontFamily: "Georgia serif" }}> Tony Fang </Title>
         </Row>
         <Divider>About Me</Divider>
-        <Row style={{height: "500px"}} justify="center" align="middle">
+        <Row justify="center" style={{ marginTop: "50px" }}>
+          <Card bordered>
+            <img src={tony} alt="image of me" width="270px" height="377px"/>
+          </Card>
+        </Row>
+        <Row style={{height: "300px"}} justify="center" align="middle">
           <Col span={6}>
             <Row>
               <p>
-                Hello, my name is Tony!
-                I am a fourth year student studying Information Technology Management at the University of Waterloo.
+                <b>
+                  Hello, my name is Tony!
+                  I am a fourth year student studying Information Technology Management at the University of Waterloo.
+                </b>
               </p>
             </Row>
             <Row>
               <p style={{margin: "0"}}>
-                In my spare time, I enjoy cooking, playing games, going on walks, and working out.
+                <b>
+                  In my spare time, I enjoy programming, cooking, playing games, going on walks, and working out.
+                </b>
               </p>
             </Row>
           </Col>
 
           <Col span={8}>
             <Row justify="center">
-              <Button href="/reactAppClient/tony-resume.pdf"> My Resume </Button>
+              <Tooltip title="Click to open!">
+                <Button href="/reactAppClient/tony-resume.pdf" target="_blank" type="primary" shape="round" size="large" icon={<FilePdfOutlined />}> My Resume </Button>
+              </Tooltip>
             </Row>
           </Col>
         </Row>
@@ -130,20 +143,32 @@ class Menu5 extends Component {
   render() {
     return (
       <div className="site-layout-content">
-        <Row>
-            <Col span={6}>
-              Menu 5
-            </Col>
-            <Col span={6}>
-              Menu 5
-            </Col>
-            <Col span={6}>
-              Menu 5
-            </Col>
-            <Col span={6}>
-              Menu 5
-            </Col>
+        <Row justify="center">
+          <Title style={{ fontFamily: "Georgia serif" }}> Contact </Title>
         </Row>
+        <Divider/>
+        <Row style={{height: "100px"}} justify="center" align="middle">
+          <p>
+            You can reach me at:
+          </p>
+        </Row>
+
+        <Row justify="center" style={{ fontSize: "50px" }}>
+          <Col span={8}>
+            <Row align="space-around">
+              <a href="mailto:t24fang@uwaterloo.ca" target="_blank" style={{ color: "#f0f2f5" }}>
+                <MailFilled />
+              </a>
+              <a href="https://github.com/landf2000" target="_blank" style={{ color: "#f0f2f5" }}>
+                <GithubOutlined />
+              </a>
+              <a href="https://www.linkedin.com/in/tony-fang-84b887164/" target="_blank" style={{ color: "#f0f2f5" }}>
+                <LinkedinFilled />
+              </a>
+            </Row>
+          </Col>
+        </Row>
+
       </div>
     )
   }
@@ -193,7 +218,7 @@ class App extends Component {
                 <Menu.Item key={2}>Menu 2</Menu.Item>
                 <Menu.Item key={3}>Menu 3</Menu.Item>
                 <Menu.Item key={4}>Menu 4</Menu.Item>
-                <Menu.Item key={5}>Menu 5</Menu.Item>
+                <Menu.Item key={5}>Contact</Menu.Item>
               </Menu>
             </Header>
           </Affix>
