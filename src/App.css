@@ -58,3 +58,13 @@
   float: right;
   margin: 16px 0 16px 24px;
 }
+
+a:link {
+  color: #f0f2f5;
+}
+
+a:hover {
+  color: grey;
+}
+
+

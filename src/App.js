@@ -1,13 +1,18 @@
 import React, { useState, Component } from "react";
 import { FilePdfOutlined, MailFilled, GithubOutlined, LinkedinFilled } from "@ant-design/icons";
 import './App.css';
-import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider, Affix, Card, Tooltip } from 'antd';
+import { Button, Layout, Menu, Breadcrumb, Row, Col, Typography, Divider, Affix, Card, Tooltip, Select } from 'antd';
 
 import logo from "./logo.png";
 import tony from "./tony.jpg";
 
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph } = Typography;
+const { Option } = Select;
+
+const axios = require("axios").default;
+const apiKey = "0EF4E0FEA4144EEE853355AC8E466916";
+
 
 
 class Menu1 extends Component {
@@ -61,23 +66,70 @@ class Menu1 extends Component {
 class Menu2 extends Component {
   constructor(props) {
     super(props);
+    this.state = { 
+      courses: null,
+      courseNames: null,
+      numCourses: null
+    };
   }
+
+  componentDidMount() {
+    if (!this.state.fetched) {
+      console.log("fetching");
+      axios({
+        method: "get",
+        url: "https://openapi.data.uwaterloo.ca/v3/Courses/1221/CS",
+        headers: { "x-api-key": apiKey }
+      }).catch(error => {
+        console.log(error);
+      }).then(res => {
+        let courses = res.data;
+        let courseNames = courses.map(course => {
+          return course.associatedAcademicOrgCode + " " + course.catalogNumber;
+        })
+        let sortedCourseNames = courseNames.sort();
+
+        this.setState({ courses: res.data, courseNames: sortedCourseNames, numCourses: courseNames.length });
+      });
+    }
+  }
+
+  onChange(value) {
+    console.log(`selected ${value}`);
+  }
+
+  onBlur() {
+  }
+
+  onFocus() {
+  }
+
+  onSearch(val) {
+    console.log('search:', val);
+  }
+
+
   render() {
     return (
       <div className="site-layout-content">
         <Row>
-            <Col span={6}>
-              Menu 2
-            </Col>
-            <Col span={6}>
-              Menu 2
-            </Col>
-            <Col span={6}>
-              Menu 2
-            </Col>
-            <Col span={6}>
-              Menu 2
-            </Col>
+          <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="Select a course"
+            optionFilterProp="children"
+            onChange={this.onChange}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            onSearch={this.onSearch}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {this.state.courseNames ? new Array(this.state.numCourses).fill(null).map((_, index) => {
+              return <Option value={this.state.courseNames[index]}>{this.state.courseNames[index]}</Option>
+            }) : <br />}
+          </Select>
         </Row>
       </div>
     )
@@ -156,13 +208,13 @@ class Menu5 extends Component {
         <Row justify="center" style={{ fontSize: "50px" }}>
           <Col span={8}>
             <Row align="space-around">
-              <a href="mailto:t24fang@uwaterloo.ca" target="_blank" style={{ color: "#f0f2f5" }}>
+              <a href="mailto:t24fang@uwaterloo.ca" target="_blank">
                 <MailFilled />
               </a>
-              <a href="https://github.com/landf2000" target="_blank" style={{ color: "#f0f2f5" }}>
+              <a href="https://github.com/landf2000" target="_blank">
                 <GithubOutlined />
               </a>
-              <a href="https://www.linkedin.com/in/tony-fang-84b887164/" target="_blank" style={{ color: "#f0f2f5" }}>
+              <a href="https://www.linkedin.com/in/tony-fang-84b887164/" target="_blank">
                 <LinkedinFilled />
               </a>
             </Row>
@@ -181,13 +233,10 @@ class App extends Component {
     this.state = {click: "1"};
 
     this.handleClick = this.handleClick.bind(this);
-    this.menuSelector = this.menuSelector.bind(this);
   }
 
 
   handleClick(e) {
-    console.log("Something was clicked");
-    console.log(e)
     this.setState({click: e.key});
   }
 
